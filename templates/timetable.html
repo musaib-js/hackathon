@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/responsive.css">
+    <title>Nectar</title>
+</head>
+
+<body>
+    <nav class="navbar background h-nav-resp">
+        <ul class="nav-list v-class-resp">
+            <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/notice">Notice Board</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+        </ul>
+        <div class="rightNav v-class-resp">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+    <section class="background firstSection">
+        <div class="box-main">
+            <div class="firstHalf">
+                <p class="text-big">Timetable</p>
+                <div class="buttons">
+                    <a href="/notice"> <button class="btn">Notice Board</button> </a>
+                     <form method  = "post" action = "/timetable/">
+                    <select class="custom-select form-control" name = "branch" id = "branch">
+                    <option selected>Select Your Branch</option>
+                    <option value = "CSE">CSE</option>
+                    <option value = "IT">IT</option>
+                    <option value = "CE">CE</option>
+                    <option value = "ETC">ETC</option>
+                    <option value = "EEE">EEE</option>
+                    </select>
+                    {% csrf_token %}
+                    <button class = "btn btn-sm" type  = "submit">View</button>
+          </form>
+
+                </div>
+            </div>
+
+            <div class="secondHalf">
+                <img src="/static/images/logo.jpg" alt="Laptop Image">
+            </div>
+        </div>
+    </section>
+
+    <table>
+        <caption>Time Table</caption>
+        <thead>
+            <tr>
+                <th scope="col">Branch</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Timings</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in timetable  %}
+            <tr>
+                <td data-label="Branch"> {{x.branch}}</td>
+                <td data-label="Subject">{{x.subject}}</td>
+                <td data-label="Teacher">{{x.teacher}}</td>
+                <td data-label="Timing">{{x.timing}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <footer class="background">
+        <p class="text-footer">
+            Copyright &copy; 2021 @ Nectar - All rights reserved
+        </p>
+    </footer>
+    <script src="/static/resp.js"></script>
+
+</body>
+
+</html>
