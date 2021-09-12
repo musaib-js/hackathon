@@ -114,6 +114,7 @@ html {
 
 .text-small {
     font-size: 18px;
+    text-align: justify;
 }
 
 .btn {

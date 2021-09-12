@@ -11,19 +11,70 @@ def timetable(request):
         branch = request.POST['branch']
         print(branch) 
          # CHECK THE BRANCH
-        if branch == "CSE":
+         
+         #22 Batch
+        if branch == "CSE-24":
            timetable = Timetable.objects.filter(branch = branch)
 
-        elif branch == "IT":
+        elif branch == "IT-24":
             timetable = Timetable.objects.filter(branch = branch)
 
-        elif branch == "CE":
+        elif branch == "CE-24":
             timetable = Timetable.objects.filter(branch = branch)
 
-        elif branch == "ETC":
+        elif branch == "ETC-24":
             timetable = Timetable.objects.filter(branch = branch)
 
-        elif branch == "EEE":
+        elif branch == "EEE-24":
+            timetable = Timetable.objects.filter(branch = branch)
+
+         # 23 Batch
+        elif branch == "CSE-23":
+           timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "IT-23":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "CE-23":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "ETC-23":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "EEE-23":
+            timetable = Timetable.objects.filter(branch = branch)
+
+            #22 Batch
+
+        elif branch == "CSE-22":
+           timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "IT-22":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "CE-22":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "ETC-22":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "EEE-22":
+            timetable = Timetable.objects.filter(branch = branch)
+
+            #21 Batch
+        elif branch == "CSE-21":
+           timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "IT-21":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "CE-21":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "ETC-21":
+            timetable = Timetable.objects.filter(branch = branch)
+
+        elif branch == "EEE-21":
             timetable = Timetable.objects.filter(branch = branch)
 
         else :
