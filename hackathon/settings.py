@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-a)l#4a0qr3jtq*jvf1a^v438a(qyr6!nnd&eog3%zh*uoc)c(u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://team-nectar-project.herokuapp.com/']
+ALLOWED_HOSTS = ['https://team-nectar-project.herokuapp.com/', 'team-nectar-project.herokuapp.com']
 
 
 # Application definition
