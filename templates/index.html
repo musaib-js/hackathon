@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/responsive.css">
-    <title>Nectar</title>
+    <link rel="shortcut icon" href="/static/images/logo.jpg" type="image/x-icon">
+    <title>IIIT Bh</title>
 </head>
 
 <body>
@@ -15,12 +17,14 @@
             <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
             <li><a href="#">Home</a></li>
             <li><a href="/timetable">Timetable</a></li>
-            <li><a href="/notice">Notice Board</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/noticeboard">Notice Board</a></li>
+            <li><a href="/students/students">Students</a></li>
         </ul>
         <div class="rightNav v-class-resp">
+        <form action = "/search" method = "post">
             <input type="text" name="search" id="search">
-            <button class="btn btn-sm">Search</button>
+            <button type = "submit" class="btn btn-sm">Search</button>
+            </form>
         </div>
         <div class="burger">
             <div class="line"></div>
@@ -32,11 +36,11 @@
     <section class="background firstSection">
         <div class="box-main">
             <div class="firstHalf">
-                <p class="text-big">Nectar</p>
-                <p class="text-small">Where the world comes to know how to create the another world called 'The Cyber World'. Oops! The Cyber World is not created that's coded. So code happy.</p>
+                <p class="text-big">IIIT Bhubaneshwar</p>
+                <p class="text-small">International Institute of Information Technology Bhubaneshwar, India. <br> Imagine Innovate Inspire</p>
                 <div class="buttons">
-                    <a href = "/timetable"> <button class="btn">Timetable</button> </a>
-                    <a href = "/notice"> <button class="btn">Notice Board</button> </a>
+                    <a href="/timetable"> <button class="btn">Timetable</button> </a>
+                    <a href="/noticeboard"> <button class="btn">Notice Board</button> </a>
 
                 </div>
             </div>
@@ -51,8 +55,8 @@
         <div class="paras">
             <p class="sectionTag text-big">The end of your search is here</p>
             <p class="sectionSubTag text-small">Education is the process of facilitating learning, or the acquisition of knowledge, skills, values, beliefs, and habits. Educational methods include teaching, training, storytelling, discussion and directed research. Education frequently takes
-                place under the guidance of educators, however learners can also educate themselves. Education can take place in formal or informal settings and any experience that has a formative effect on the way one thinks, feels, or acts may be
-                considered educational. The methodology of teaching is called pedagogy.</p>
+                place under the guidance of educators, however learners can also educate themselves. Education can take place in formal or informal settings and any experience that has a formative effect on the way one thinks, feels, or acts may be considered
+                educational. The methodology of teaching is called pedagogy.</p>
         </div>
         <div class="thumbnail">
             <img src="https://source.unsplash.com/900x900/?coding,programming" alt="laptop image" class="imgFluid">
@@ -62,7 +66,8 @@
     <section class="section section-left" id="about">
         <div class="paras">
             <p class="sectionTag text-big">Transforming Tech Education in India</p>
-            <p class="sectionSubTag text-small">We know that you're fed up with the obsolete and outdated methods of teaching and you want something pragmatic. Tech Education is impossible without pragmatism and same is our approach. Whatever we teach, we do that practically. So, there's no need to be afraid of coding and all that stuff. We stress upon project based learning, for once you learn how to implement anything in a real world project, you automatically get to know about everything about that thing. <br> <br> So, Come here and enjoy the technology.</p>
+            <p class="sectionSubTag text-small">We know that you're fed up with the obsolete and outdated methods of teaching and you want something pragmatic. Tech Education is impossible without pragmatism and same is our approach. Whatever we teach, we do that practically. So, there's
+                no need to be afraid of coding and all that stuff. We stress upon project based learning, for once you learn how to implement anything in a real world project, you automatically get to know about everything about that thing. <br> <br>                So, Come here and enjoy the technology.</p>
         </div>
         <div class="thumbnail">
             <img src="https://source.unsplash.com/900x900/?coding,javascript,html" alt="laptop image" class="imgFluid">
@@ -87,7 +92,7 @@
 
     <footer class="background">
         <p class="text-footer">
-            Copyright &copy; 2021 @ Nectar  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Designed and Developed by Musaib and Lopamudra
+            Copyright &copy; 2021 @ IIIT-Bh - Designed and Developed by Musaib and Lopamudra
         </p>
     </footer>
     <script src="/static/resp.js"></script>

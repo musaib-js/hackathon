@@ -16,27 +16,11 @@
             <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
             <li><a href="/">Home</a></li>
             <li><a href="/timetable">Timetable</a></li>
-            <li><a href="/notice">Notice Board</a></li>
-            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/noticeboard">Notice Board</a></li>
+            <li><a href="/students/students">Students</a></li>
         </ul>
         <div class="rightNav v-class-resp">
-            <input type="text" name="search" id="search">
-            <button class="btn btn-sm">Search</button>
-        </div>
-        <div class="burger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
-    </nav>
-
-    <section class="background firstSection">
-        <div class="box-main">
-            <div class="firstHalf">
-                <p class="text-big">Timetable</p>
-                <div class="buttons">
-                    <a href="/notice"> <button class="btn">Notice Board</button> </a>
-                     <form method  = "post" action = "/timetable/">
+            <form method  = "post" action = "/timetable/">
                     <select class="custom-select form-control" name = "branch" id = "branch">
                     <option selected>Select Your Branch and Batch</option>
                     <option value = "CSE-24">CSE-24</option>
@@ -63,17 +47,16 @@
                     {% csrf_token %}
                     <button class = "btn btn-sm" type  = "submit">View</button>
           </form>
-
-                </div>
-            </div>
-
-            <div class="secondHalf">
-                <img src="/static/images/logo.jpg" alt="Laptop Image">
-            </div>
         </div>
-    </section>
-
-    <table>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+<br>
+<br>
+    <table class = "timetable">
         <caption>Time Table</caption>
         <thead>
             <tr>
@@ -81,6 +64,7 @@
                 <th scope="col">Subject</th>
                 <th scope="col">Teacher</th>
                 <th scope="col">Timings</th>
+                <th scope="col">Days</th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +74,7 @@
                 <td data-label="Subject">{{x.subject}}</td>
                 <td data-label="Teacher">{{x.teacher}}</td>
                 <td data-label="Timing">{{x.timing}} </td>
+                <td data-label="Days">{{x.days}} </td>
             </tr>
             {% endfor %}
         </tbody>

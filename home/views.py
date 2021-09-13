@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import Timetable
-
+from .models import Timetable, Notification
 
 
 def index(request):
@@ -87,3 +86,13 @@ def timetable(request):
         timetable = Timetable.objects.all()
         context = {'timetable':timetable} 
     return render(request, 'timetable.html', context)
+
+def noticeboard(request):
+    notice = Notification.objects.all().order_by('-timestamp')
+    context = {'notice':notice}
+    return render(request, 'noticeboard.html', context)
+
+def notice(request, slug):
+    notice = Notification.objects.filter(slug = slug).first()
+    context = {'notice':notice}
+    return render(request, 'notice.html', context)
