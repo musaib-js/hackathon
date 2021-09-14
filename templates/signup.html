@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/responsive.css">
+    <title>Nectar</title>
+</head>
+
+<body>
+    <nav class="navbar background h-nav-resp">
+        <ul class="nav-list v-class-resp">
+            <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/noticeboard">Notice Board</a></li>
+            <li><a href="/students/students">Students</a></li>
+        </ul>
+        <div class="rightNav v-class-resp">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+<br>
+<br>
+<section class="contact" id="contact">
+        <h1 class="text-center">Sign Up</h1>
+        <form action = "/signup/" method = "post">
+        <div class="form">
+            <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your name">
+            <input class="form-input" type="text" name="roll" id="phone" placeholder="Enter Your College ID">
+            <input class="form-input" type="text" name="branch" id="branch" placeholder="Enter Your Branch">
+            <input class="form-input" type="text" name="year" id="name" placeholder="Enter Your Year">
+            <input class="form-input" type="text" name="residence" id="res" placeholder="Where do you live?">
+            <input class="form-input" type="email" name="email" id="email" placeholder="Enter Your email">
+            <input class="form-input" type="text" name="achievements" id="achievements" placeholder="Enter Your Achievements">
+            <input class="form-input" type="text" name="skills" id="phone" placeholder="Enter Your Skills">
+            <input class="form-input" type="phone" name="phone" id="email" placeholder="Enter Your Phone">
+            <input class="form-input" type="text" name="interests" id="phone" placeholder="What are you interested in?">
+            <input class="form-input" type="text" name="society" id="society" placeholder="What society are you in?">
+            <input class="form-input" type="password" name="password" id="society" placeholder="Choose a Password">
+            <input class="form-input" type="file" name="profile" id="profile" placeholder="Upload your picture">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-dark" type = "submit">Submit</button>
+        </div>
+        </form>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer class="background">
+        <p class="text-footer">
+            Copyright &copy; 2021 @ IIIT-Bh - Designed and Developed by Musaib and Lopamudra
+        </p>
+    </footer>
+    <script src="/static/resp.js"></script>
+</body>
+
+</html>

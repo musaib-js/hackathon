@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/responsive.css">
+    <title>{{profile.name}}</title>
+     {% comment %} Modal CSS {% endcomment %}
+    <style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,1); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closemusaib {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.closemusaib:hover,
+.closemusaib:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+    {% comment %} Modal CSS Ends {% endcomment %}
+</head>
+
+<body>
+    <nav class="navbar background h-nav-resp">
+        <ul class="nav-list v-class-resp">
+            <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/noticeboard">Notice Board</a></li>
+            <li><a href="/students/students">Students</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+        <div class="rightNav v-class-resp">
+            {% comment %} <input type="text" name="search" id="search"> {% endcomment %}
+            <a href = "/profile"> <button class="btn btn-sm">{{request.user.first_name}}</button> </a>
+            <a href = "/logout"><button class="btn btn-sm" >Logout</button></a>
+            </form>
+        </div>
+       {% else %} 
+        <div class="rightNav v-class-resp">
+            {% comment %} <input type="text" name="search" id="search"> {% endcomment %}
+            <button class="btn btn-sm" id = "myBtn">Login</button>
+            <a href = "/signup"><button class="btn btn-sm" >Signup</button></a>
+            </form>
+        </div>
+        {% endif %}
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+{% comment %} Modal {% endcomment %}
+<!-- The Login Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+     <h1 class="text-center">Edit Your Profile </h1>
+     <form action = "/profile/" method = "post">
+        <div class="form">
+            <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your name">
+            <input class="form-input" type="text" name="roll" id="phone" placeholder="Enter Your College ID">
+            <input class="form-input" type="text" name="branch" id="branch" placeholder="Enter Your Branch">
+            <input class="form-input" type="text" name="year" id="name" placeholder="Enter Your Year">
+            <input class="form-input" type="text" name="residence" id="res" placeholder="Where do you live?">
+            <input class="form-input" type="email" name="email" id="email" placeholder="Enter Your email">
+            <input class="form-input" type="text" name="achievements" id="achievements" placeholder="Enter Your Achievements">
+            <input class="form-input" type="text" name="skills" id="phone" placeholder="Enter Your Skills">
+            <input class="form-input" type="phone" name="phone" id="email" placeholder="Enter Your Phone">
+            <input class="form-input" type="text" name="interests" id="phone" placeholder="What are you interested in?">
+            <input class="form-input" type="text" name="society" id="society" placeholder="What society are you in?">
+            <input class="form-input" type="password" name="password" id="society" placeholder="Choose a Password">
+            <input class="form-input" type="file" name="profile" id="profile" placeholder="Upload your picture">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-dark" type = "submit">Submit</button>
+        </div>
+        </form>
+  </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+{% comment %} Modal Ends {% endcomment %}
+<br>
+<br>
+    <section class="section">
+        <div class="paras">
+            <p class="sectionTag text-big" style = "text-decoration: underline; color: darkslategray;">Name: {{profile.name}}</p>
+            <p class="sectionSubTag text-small">ID: {{profile.roll}} </p> <br>
+            <p class="sectionSubTag text-small">Year: {{profile.year}}</p> <br>
+            <p class="sectionSubTag text-small">Email: {{profile.email}}</p> <br>
+            <p class="sectionSubTag text-small">Phone: {{profile.phone}}</p> <br>
+            <p class="sectionSubTag text-small">Achievements: {{profile.achievements | safe}}</p> <br>
+            <p class="sectionSubTag text-small">Society: {{profile.society}}</p> <br>
+            <p class="sectionSubTag text-small">Interest: {{profile.interests | safe}}</p> <br>
+            <p class="sectionSubTag text-small">  Skills: {{profile.skills}} </p> <br>
+            <button class = "btn btn-profile" id  = "myBtn">Edit Profile</button>
+        </div>
+        <div class="thumbnail">
+            <img src="/media/{{profile.profile}}" alt="laptop image" class="imgFluid">
+        </div>
+    </section>
+    <br><br><br>
+    <footer class="background">
+        <p class="text-footer">
+            Copyright &copy; 2021 @ IIIT-Bh - Designed and Developed by Musaib and Lopamudra
+        </p>
+    </footer>
+    <script src="/static/resp.js"></script>
+     {% comment %} Login Modal JS {% endcomment %}
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+   
+</body>
+
+</html>

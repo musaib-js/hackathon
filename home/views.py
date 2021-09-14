@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Timetable, Notification
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout, login
+from students.models import Student
 
 
 def index(request):
@@ -96,3 +101,72 @@ def notice(request, slug):
     notice = Notification.objects.filter(slug = slug).first()
     context = {'notice':notice}
     return render(request, 'notice.html', context)
+
+def signup(request):
+    if request.method == "POST":
+        # Get the post parameters
+        roll = request.POST['roll']
+        name = request.POST['name']
+        branch = request.POST['branch']
+        year = request.POST['year']
+        residence = request.POST['residence']
+        profile = request.POST['profile']
+        skills = request.POST['skills']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        interests = request.POST['interests']
+        society = request.POST['society']
+        achievements = request.POST['achievements']
+        password = request.POST['password']
+    
+        print(roll)
+        myuser = User.objects.create_user(roll, email, password)
+        myuser.first_name = name
+        myuser.roll = roll
+        myuser.branch = branch
+        myuser.year = year
+        myuser.residence = residence
+        myuser.profile = profile
+        myuser.skills = skills
+        myuser.email = email
+        myuser.phone = phone
+        myuser.interests = interests
+        myuser.society = society
+        myuser.achievements = achievements
+        myuser.save()
+        messages.success(request, " Your Account! has been successfully created")
+        return redirect('/')
+
+    else:
+        return render(request,  'signup.html')
+
+
+def handleLogin(request):
+    if request.method =='POST':
+        roll = request.POST['roll']
+        password = request.POST['password']
+
+        user = authenticate(username = roll, password = password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged In")
+            return redirect('/')
+
+        else:
+            messages.error(request, "Invalid Credentials")
+            return redirect('/')
+
+
+    return HttpResponse("Login")
+
+def handleLogout(request):
+    logout(request)
+    messages.success(request, "Successfully Logged Out")
+    return redirect('/')
+
+def profile(request):
+    user = request.user
+    profile = Student.objects.filter(roll = user).first()
+    context = {'profile':profile}
+    return render (request, 'profile.html', context)
