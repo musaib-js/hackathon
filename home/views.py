@@ -119,7 +119,7 @@ def signup(request):
         achievements = request.POST['achievements']
         password = request.POST['password']
     
-        print(roll)
+        # Save the data to the database
         myuser = User.objects.create_user(roll, email, password)
         myuser.first_name = name
         myuser.roll = roll
