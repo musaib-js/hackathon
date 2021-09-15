@@ -42,12 +42,6 @@
   font-size: 28px;
   font-weight: bold;
 }
-.closemusaib {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
 
 .close:hover,
 .close:focus {
@@ -55,12 +49,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.closemusaib:hover,
-.closemusaib:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+
 </style>
     {% comment %} Modal CSS Ends {% endcomment %}
 </head>
@@ -96,8 +85,22 @@
             <div class="line"></div>
         </div>
     </nav>
-{% comment %} Modal {% endcomment %}
-<!-- The Login Modal -->
+{% comment %} Alert {% endcomment %}
+     {% for message in messages %}
+     <div id="message" class = "message">
+    <div style="padding: 5px; background: #2d5058;">
+        <div class="alert" role="alert" id = "inner-message">
+        <strong>Message : </strong> {{ message }}
+            <button type="button" class="btn btn-dark closealert" data-dismiss="alert" aria-label="Close">
+              <span class = "closealert">&times;</span> </button>
+        </div>
+        </div>
+</div>
+         {% endfor %}
+    {% comment %} End Alert {% endcomment %}
+
+
+{% comment %} Login Modal {% endcomment %}
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
@@ -207,7 +210,16 @@ window.onclick = function(event) {
   }
 }
 </script>
-   
+
+{% comment %} Alert Javascript {% endcomment %}
+<script>
+var spanclose = document.getElementsByClassName("closealert")[0];
+// When the user clicks on <span> (x), close the modal
+spanclose.onclick = function() {
+  message.style.display = "none";
+}
+</script>
+
 </body>
 
 
