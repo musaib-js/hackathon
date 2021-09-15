@@ -102,6 +102,7 @@ def notice(request, slug):
     context = {'notice':notice}
     return render(request, 'notice.html', context)
 
+# The Sign Up End Point
 def signup(request):
     if request.method == "POST":
         # Get the post parameters
@@ -109,34 +110,27 @@ def signup(request):
         name = request.POST['name']
         branch = request.POST['branch']
         year = request.POST['year']
-        residence = request.POST['residence']
-        profile = request.POST['profile']
-        skills = request.POST['skills']
         email = request.POST['email']
-        phone = request.POST['phone']
-        interests = request.POST['interests']
-        society = request.POST['society']
-        achievements = request.POST['achievements']
         password = request.POST['password']
     
-        # Save the data to the database
-        myuser = User.objects.create_user(roll, email, password)
-        myuser.first_name = name
-        myuser.roll = roll
-        myuser.branch = branch
-        myuser.year = year
-        myuser.residence = residence
-        myuser.profile = profile
-        myuser.skills = skills
-        myuser.email = email
-        myuser.phone = phone
-        myuser.interests = interests
-        myuser.society = society
-        myuser.achievements = achievements
-        myuser.save()
-        messages.success(request, " Your Account! has been successfully created")
-        return redirect('/')
-
+        # Logic to the check the mail ID
+        checkid = "@iiit-bh.ac.in"
+        if checkid in email:
+            # Save the data to the database
+            myuser = User.objects.create_user(roll, email, password)
+            myuser.first_name = name
+            myuser.roll = roll
+            myuser.branch = branch
+            myuser.year = year
+            myuser.email = email
+            myuser.save()
+            messages.success(request, " Your Account! has been successfully created")
+            return redirect('/')
+        
+        else:
+            messages.error(request, "Kindly Signup With The College Mail ID")
+            return redirect('/')
+            
     else:
         return render(request,  'signup.html')
 
