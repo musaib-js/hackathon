@@ -1,5 +1,11 @@
-from django.shortcuts import render
-from .models import Timetable
+from django.shortcuts import render, redirect
+from .models import Timetable, Notification
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout, login
+from students.models import Student
+
 
 
 def index(request):
