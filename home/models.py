@@ -25,6 +25,20 @@ class Timetable(models.Model):
 
     def __str__(self):
         return self.subject + " by " +  self.teacher +  " for " + self.branch
+
+
+class todoList(models.Model):
+    sno = models.AutoField(primary_key = True)
+    title = models.CharField(max_length = 250)
+    subject = models.CharField(max_length = 100)
+    duedate = models.DateField()
+    branch = models.CharField(max_length = 10, default = "")
+    year = models.CharField(max_length = 10, default = "")
+
+    def __str__(self):
+        return self.title
+    
+
     
 
     

@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Timetable, Notification
+from .models import Timetable, Notification, todoList
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from students.models import Student
+from students.forms import StudentForm
 
 
 
@@ -114,3 +115,27 @@ def profile(request):
     profile = Student.objects.filter(roll = user).first()
     context = {'profile':profile}
     return render (request, 'profile.html', context)
+
+def todo(request):
+    user = request.user
+    print(user)
+    userlogged = Student.objects.filter(roll = user).first()
+    branch = userlogged.branch
+    year = userlogged.year
+    todo = todoList.objects.filter(branch = branch, year = year)
+    context = {'todo': todo}
+    return render (request, 'todo.html', context)
+
+def update(request):
+    user = request.user
+    profile = Student.objects.filter(roll = user).first()
+    context = {'profile':profile}
+    userlogged = Student.objects.filter(roll = user).first()
+    form = StudentForm(request.POST, instance = userlogged)  
+    if form.is_valid():  
+        form.save()  
+        messages.success(request, "Details Updated Successfully")
+        return redirect('/')  
+    return render(request, 'profiel.html', context)  
+
+    

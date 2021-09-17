@@ -101,7 +101,7 @@
   <div class="modal-content">
     <span class="close">&times;</span>
      <h1 class="text-center">Edit Your Profile </h1>
-     <form action = "/profile/" method = "post">
+     <form action = "/update/" method = "post">
         <div class="form">
             <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your name">
             <input class="form-input" type="text" name="roll" id="phone" placeholder="Enter Your College ID">
@@ -114,7 +114,6 @@
             <input class="form-input" type="phone" name="phone" id="email" placeholder="Enter Your Phone">
             <input class="form-input" type="text" name="interests" id="phone" placeholder="What are you interested in?">
             <input class="form-input" type="text" name="society" id="society" placeholder="What society are you in?">
-            <input class="form-input" type="password" name="password" id="society" placeholder="Choose a Password">
             <input class="form-input" type="file" name="profile" id="profile" placeholder="Upload your picture">
             {% csrf_token %}
             <button class="btn btn-sm btn-dark" type = "submit">Submit</button>
@@ -131,7 +130,7 @@
 {% comment %} Modal Ends {% endcomment %}
 <br>
 <br>
-    <section class="section">
+    <section class="section section-left">
         <div class="paras">
             <p class="sectionTag text-big" style = "text-decoration: underline; color: darkslategray;">Name: {{profile.name}}</p>
             <p class="sectionSubTag text-small">ID: {{profile.roll}} </p> <br>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/responsive.css">
+    <title>To-Do List</title>
+</head>
+
+<body>
+    <nav class="navbar background h-nav-resp">
+        <ul class="nav-list v-class-resp">
+            <div class="logo"><img src="/static/images/logo.jpg" alt="logo"></div>
+            <li><a href="/">Home</a></li>
+            <li><a href="/timetable">Timetable</a></li>
+            <li><a href="/noticeboard">Notice Board</a></li>
+            <li><a href="/students/students">Students</a></li>
+        </ul>
+        <div class="rightNav v-class-resp">
+            <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button>
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+
+<br>
+<br>
+
+    <!-- Section for the notice board -->
+    <table class="timetable">
+        <caption>T0-DO List</caption>
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in todo %}
+            <tr>
+                <td data-label="Title"> {{x.title}}</td>
+                <td data-label="Due Date">{{x.duedate}}</td>
+                <td data-label="Subject">{{x.subject}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <footer class="background">
+        <p class="text-footer">
+            Copyright &copy; 2021 @ IIIT-Bh - Designed and Developed by Musaib and Lopamudra
+        </p>
+    </footer>
+    <script src="/static/resp.js"></script>
+</body>
+
+</html>
