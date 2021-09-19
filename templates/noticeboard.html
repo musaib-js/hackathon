@@ -8,6 +8,58 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/responsive.css">
     <title>Notice Board</title>
+        <style>
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,1); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.closemusaib {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+.closemusaib:hover,
+.closemusaib:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
 </head>
 
 <body>
@@ -20,8 +72,11 @@
             <li><a href="/students/students">Students</a></li>
         </ul>
         <div class="rightNav v-class-resp">
-            <input type="text" name="search" id="search">
-            <button class="btn btn-sm">Search</button>
+        {% if user.is_authenticated %}
+           {% if request.user.first_name == cr %}
+            <button class = "btn btn-sm" id  = "myBtn">Post a Notice</button>
+           {% endif %}
+        {% endif %}
         </div>
         <div class="burger">
             <div class="line"></div>
@@ -32,6 +87,31 @@
 
 <br>
 <br>
+
+{% comment %} Modal {% endcomment %}
+<!-- The Edit Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+     <h1 class="text-center">Post a Notice </h1>
+     <form action = "/noticeboard/" method = "post">
+        <div class="form">
+            <input class="form-input" type="text" name="author" id="name" placeholder="Enter Your name">
+            <input class="form-input" type="text" name="title" id="phone" placeholder="Enter the notice title">
+            <input class="form-input" type="text" name="subtitle" id="branch" placeholder="Enter the subtitle">
+            <input class="form-input" type="text" name="desc" id="name" placeholder="Enter the details">
+            <input class="form-input" type="date" name="date" id="res" placeholder="What's the date?">
+            {% csrf_token %}
+            <button class="btn btn-sm btn-dark" type = "submit">Post</button>
+        </div>
+        </form>
+  </div>
+<br>
+<br>
+<br>
+</div>
+{% comment %} Modal Ends {% endcomment %}
 
     <!-- Section for the notice board -->
     <table class="timetable">
@@ -57,13 +137,41 @@
             {% endfor %}
         </tbody>
     </table>
-
     <footer class="background">
         <p class="text-footer">
             Copyright &copy; 2021 @ IIIT-Bh - Designed and Developed by Musaib and Lopamudra
         </p>
     </footer>
     <script src="/static/resp.js"></script>
+    {% comment %} Login Modal JS {% endcomment %}
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+   
 </body>
 
 </html>

@@ -95,7 +95,7 @@
         </div>
     </nav>
 {% comment %} Modal {% endcomment %}
-<!-- The Login Modal -->
+<!-- The Edit Modal -->
 <div id="myModal" class="modal">
   <!-- Modal content -->
   <div class="modal-content">
@@ -134,9 +134,11 @@
         <div class="paras">
             <p class="sectionTag text-big" style = "text-decoration: underline; color: darkslategray;">Name: {{profile.name}}</p>
             <p class="sectionSubTag text-small">ID: {{profile.roll}} </p> <br>
+            <p class="sectionSubTag text-small">Branch: {{profile.branch}} </p> <br>
             <p class="sectionSubTag text-small">Year: {{profile.year}}</p> <br>
             <p class="sectionSubTag text-small">Email: {{profile.email}}</p> <br>
             <p class="sectionSubTag text-small">Phone: {{profile.phone}}</p> <br>
+            <p class="sectionSubTag text-small">Residence: {{profile.residence}}</p> <br>
             <p class="sectionSubTag text-small">Achievements: {{profile.achievements | safe}}</p> <br>
             <p class="sectionSubTag text-small">Society: {{profile.society}}</p> <br>
             <p class="sectionSubTag text-small">Interest: {{profile.interests | safe}}</p> <br>

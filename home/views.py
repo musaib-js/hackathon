@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Timetable, Notification, todoList
+from .models import Timetable, Notification, todoList, classRep
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -44,8 +44,26 @@ def timetable(request):
     return render(request, 'timetable.html', context)
 
 def noticeboard(request):
+    user = request.user
+    classrep = classRep.objects.filter(roll = user).first()
+    if classrep is not None:
+        cr = classrep.name
+    else:
+        cr  = "it's really been tough and tricky"
     notice = Notification.objects.all().order_by('-timestamp')
-    context = {'notice':notice}
+    context = {'notice':notice, 'cr':cr}
+    if request.method == "POST":
+        title = request.POST['title']
+        subtitle = request.POST['subtitle']
+        desc = request.POST['desc']
+        author = request.POST['author']
+        date = request.POST['date']
+
+        newnotice = Notification(title = title, subtitle = subtitle, desc = desc, author = author, timestamp = date)
+        newnotice.save()
+        messages.success(request, "Notice Posted Successfully")
+        return redirect('/')
+         
     return render(request, 'noticeboard.html', context)
 
 def notice(request, slug):
@@ -138,4 +156,6 @@ def update(request):
         return redirect('/')  
     return render(request, 'profiel.html', context)  
 
+def polls(request):
+    return render(request, 'poll.html')
     

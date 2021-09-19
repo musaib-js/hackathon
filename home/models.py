@@ -10,7 +10,7 @@ class Notification(models.Model):
     desc = models.TextField()
     author = models.CharField(max_length = 100)
     slug = models.CharField(max_length = 150)
-    timestamp = models.CharField(max_length = 10) # Actually the DateField gave an error just before the submission. Will change the data type during the next task
+    timestamp = models.DateField(default = "01-01-2020")
 
     def __str__(self):
         return self.title +  " by " + self.author
@@ -37,6 +37,16 @@ class todoList(models.Model):
 
     def __str__(self):
         return self.title
+    
+class classRep(models.Model):
+    sno = models.AutoField(primary_key = True)
+    name = models.CharField(max_length = 45)
+    roll = models.CharField(max_length = 12)
+    branch = models.CharField(max_length = 10)
+    year = models.CharField(max_length = 10)
+
+    def __str__(self):
+        return self.name + " CR of " + self.branch + self.year
     
 
     
