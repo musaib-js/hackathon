@@ -108,7 +108,8 @@ def signup(request):
 
         # Logic to the check the mail ID
         checkid = "@iiit-bh.ac.in"
-        if checkid in email:
+        checkidtwo = "b1"
+        if checkid and checkidtwo in email and branch == "CSE":
             # Save the data to the database
             myuser = User.objects.create_user(roll, email, password)
             myuser.first_name = name
@@ -121,7 +122,7 @@ def signup(request):
             return redirect('/')
 
         else:
-            messages.error(request, "Kindly Signup With The College Mail ID")
+            messages.error(request, "Fill the form correctly")
             return redirect('/')
 
     else:
