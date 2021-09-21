@@ -17,9 +17,20 @@ This part displays the list of the students who have been added to the database.
 # Sign Up and Login Part
 Sign up part creates the account of the user. The student is supposed to give his name, ID, branch, year, email and set a password for his account. The user is supposed to login with these credentials then. When a user signs up with his details, he can see his profile according to the credentials provided by him. Here the criteria set in the backend is that the ID of the logged in student is matched with the student details at the backend and the data is rendered.
 
+
+# Profile Part
+Every user upon signing in can check his profile. He/She is allowed to update his/her details. When the user logs into the site, he can view his profile, where there's an 'Edit Profile' button, which upon clicking displays a modal containing a form, where a user can submt the details that are to be updated and they'd get updated in the real time.
+
+# CR Previliges
+Only the CR's can post, edit and delete a notice from the notice board. The two CRs are Shourya Garg and Lopamudra MAllick whose credentials are given below.
+ Username: B120059
+ Pass: abcd1234
+
+ Username = B120030
+ Pass: lopa1234
+
 # Bonus Tasks
 The bonus task that we have implemented as of now is that a student can only signup with his college mail ID, which would be provided to the enrolled students only. So, this would restrict the outsiders to signup and then login to the site.
 
 Secondly, we have added a todolist for each branch. The logic used is that when a user is logged into the site, he'd be shown a 'To-do List' button and upon clicking the button, the todolist of his particular branch and year are shown. The button is not shown to the visitors who are not logged in.
 
-Thirdly, every user is allowed to update his details. When the user logs into the site, he can view his profile, where there's an 'Edit Profile' button, which upon clicking displays a modal containing a form, where a user can submt the details that are to be updated and they'd get updated in the real time.
