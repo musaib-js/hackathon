@@ -70,12 +70,12 @@ html {
 
 .background {
     background: rgba(0, 0, 0, 0.7) url('/static/images/college.jpg');
-    background-size: cover;
+    background-size: center;
     background-blend-mode: darken;
 }
 
 .firstSection {
-    height: 76vh;
+    height: 46vh;
 }
 
 .box-main {
@@ -152,6 +152,29 @@ html {
     border: 2px solid grey;
 }
 
+.homeSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 80%;
+    margin: auto;
+    font-family: 'Ubuntu', sans-serif;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.notice {
+    padding: 10px;
+    margin: 5px;
+    width: 50%;
+}
+
+.list {
+    padding: 10px;
+    margin: 5px;
+    width: 50%;
+}
+
 .section {
     display: flex;
     align-items: center;
@@ -210,6 +233,16 @@ html {
     padding: 5px 13px;
     width: 100%;
     font-size: 19px;
+    border: 2px solid grey;
+    border-radius: 6px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.select-input {
+    margin: 14px 0;
+    padding: 5px 13px;
+    width: 40%;
+    font-size: 15px;
     border: 2px solid grey;
     border-radius: 6px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

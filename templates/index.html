@@ -8,49 +8,58 @@
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/responsive.css">
     <link rel="shortcut icon" href="/static/images/logo.jpg" type="image/x-icon">
-    <title>IIIT Bhubaneshwar</title>
+    <title>CSE Branch | IIIT Bhubaneshwar</title>
     {% comment %} Modal CSS {% endcomment %}
     <style>
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,1); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-</style>
+        /* The Modal (background) */
+        
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 1);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+        /* Modal Content */
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* The Close Button */
+        
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
     {% comment %} Modal CSS Ends {% endcomment %}
 </head>
 
@@ -63,19 +72,25 @@
             <li><a href="/timetable">Timetable</a></li>
             <li><a href="/noticeboard">Notice Board</a></li>
             <li><a href="/students/students">Students</a></li>
+            {% if user.is_authenticated %}
+            <li> <a href="/todo">To-do List </a></li>
+            {% endif %}
+
+
+
         </ul>
         {% if user.is_authenticated %}
         <div class="rightNav v-class-resp">
             {% comment %} <input type="text" name="search" id="search"> {% endcomment %}
-            <a href = "/profile"> <button class="btn btn-sm">{{request.user.first_name}}</button> </a>
-            <a href = "/logout"><button class="btn btn-sm" >Logout</button></a>
+            <a href="/profile"> <button class="btn btn-sm">{{request.user.first_name}}</button> </a>
+            <a href="/logout"><button class="btn btn-sm" >Logout</button></a>
             </form>
         </div>
-       {% else %} 
+        {% else %}
         <div class="rightNav v-class-resp">
             {% comment %} <input type="text" name="search" id="search"> {% endcomment %}
-            <button class="btn btn-sm" id = "myBtn">Login</button>
-            <a href = "/signup"><button class="btn btn-sm" >Signup</button></a>
+            <button class="btn btn-sm" id="myBtn">Login</button>
+            <a href="/signup"><button class="btn btn-sm" >Signup</button></a>
             </form>
         </div>
         {% endif %}
@@ -85,99 +100,106 @@
             <div class="line"></div>
         </div>
     </nav>
-{% comment %} Alert {% endcomment %}
-     {% for message in messages %}
-     <div id="message" class = "message">
-    <div style="padding: 5px; background: #2d5058;">
-        <div class="alert" role="alert" id = "inner-message">
-        <strong>Message : </strong> {{ message }}
-            <button type="button" class="btn btn-dark closealert" data-dismiss="alert" aria-label="Close">
+    {% comment %} Alert {% endcomment %} {% for message in messages %}
+    <div id="message" class="message">
+        <div style="padding: 5px; background: #2d5058;">
+            <div class="alert" role="alert" id="inner-message">
+                <strong>Message : </strong> {{ message }}
+                <button type="button" class="btn btn-dark closealert" data-dismiss="alert" aria-label="Close">
               <span class = "closealert">&times;</span> </button>
+            </div>
         </div>
-        </div>
-</div>
-         {% endfor %}
-    {% comment %} End Alert {% endcomment %}
-
-
-{% comment %} Login Modal {% endcomment %}
-<div id="myModal" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-     <h1 class="text-center">Login </h1>
-     <form action = "/login/" method = "post">
-        <div class="form">
-            <input class="form-input" type="text" name="roll" id="phone" placeholder="Enter Your ID">
-            <input class="form-input" type="password" name="password" id="email" placeholder="Enter Your Password">
-             <button class="btn btn-sm btn-dark" type = "submit">Submit</button>
-             {% csrf_token %}
+    </div>
+    {% endfor %} {% comment %} End Alert {% endcomment %} {% comment %} Login Modal {% endcomment %}
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 class="text-center">Login </h1>
+            <form action="/login/" method="post">
+                <div class="form">
+                    <input class="form-input" type="text" name="roll" id="phone" placeholder="Enter Your ID">
+                    <input class="form-input" type="password" name="password" id="email" placeholder="Enter Your Password">
+                    <button class="btn btn-sm btn-dark" type="submit">Submit</button> {% csrf_token %}
             </form>
             </div>
-  </div>
+        </div>
 
-</div>
-{% comment %} Modal Ends {% endcomment %}
+    </div>
+    {% comment %} Modal Ends {% endcomment %}
 
     <section class="background firstSection">
         <div class="box-main">
             <div class="firstHalf">
-                <p class="text-big">IIIT Bhubaneshwar</p>
-                <p class="text-small">International Institute of Information Technology Bhubaneshwar, India. <br> Imagine Innovate Inspire</p>
+                <p class="text-big"> CSE Branch | IIIT Bhubaneshwar</p>
                 <div class="buttons">
+                    {% comment %}
                     <a href="/timetable"> <button class="btn">Timetable</button> </a>
                     <a href="/noticeboard"> <button class="btn">Notice Board</button> </a>
 
-                     {% if user.is_authenticated %}
-                     <a href="/todo"> <button class="btn">To-do List</button> </a>
-                     {% endif %}
+                    {% if user.is_authenticated %}
+                    <a href="/todo"> <button class="btn">To-do List</button> </a>
+                    {% endif %} {% endcomment %}
 
                 </div>
             </div>
-
-            <div class="secondHalf">
-                <img src="/static/images/logo.jpg" alt="Laptop Image">
-            </div>
         </div>
     </section>
+    <!-- Recent Notices Section Starts -->
+    <div class="homeSection">
+        <div class="notice">
+            <h2 style="color: darkslategray;">Notice Board</h2>
+            <ul style="padding: 20px; border-radius: 8px">
+                {% for x in notice %}
+                <li style="background: #cce5ff;margin: 5px;">{{x.title}} <a href = "/{{x.slug}}">Read More</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="list">
+        <h2 style="color: darkslategray;">Recent Events</h2>
+            <ul style="padding: 20px; border-radius: 8px">
+               {% for x in event %}
+                <li style="background: #cce5ff;margin: 5px;">{{x.title}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-    <section class="section">
-        <div class="paras">
-            <p class="sectionTag text-big">The end of your search is here</p>
-            <p class="sectionSubTag text-small">Education is the process of facilitating learning, or the acquisition of knowledge, skills, values, beliefs, and habits. Educational methods include teaching, training, storytelling, discussion and directed research. Education frequently takes
-                place under the guidance of educators, however learners can also educate themselves. Education can take place in formal or informal settings and any experience that has a formative effect on the way one thinks, feels, or acts may be considered
-                educational. The methodology of teaching is called pedagogy.</p>
-        </div>
-        <div class="thumbnail">
-            <img src="https://source.unsplash.com/900x900/?coding,programming" alt="laptop image" class="imgFluid">
-        </div>
-    </section>
+    <!-- Recent Notices Section Ends -->
 
-    <section class="section section-left" id="about">
-        <div class="paras">
-            <p class="sectionTag text-big">Transforming Tech Education in India</p>
-            <p class="sectionSubTag text-small">We know that you're fed up with the obsolete and outdated methods of teaching and you want something pragmatic. Tech Education is impossible without pragmatism and same is our approach. Whatever we teach, we do that practically. So, there's
-                no need to be afraid of coding and all that stuff. We stress upon project based learning, for once you learn how to implement anything in a real world project, you automatically get to know about everything about that thing. <br> <br>                So, Come here and enjoy the technology.</p>
+<!-- Recent Notices Section Starts -->
+    <div class="homeSection">
+        <div class="notice">
+        <h2 style="color: darkslategray; text-decoration: underline">About IIIT-Bh</h2> <br>
+       International Institute of Information Technology, Bhubaneswar was established by the Government of Odisha in 2006. It is designed to be a premier institute of Information Technology and related areas. The Institute has been converted into a unitary university by the Government of Odisha on 20th Jan 2014.
         </div>
-        <div class="thumbnail">
-            <img src="https://source.unsplash.com/900x900/?coding,javascript,html" alt="laptop image" class="imgFluid">
+        <div class="list">
+        <h2 style="color: darkslategray;  text-decoration: underline">About CSE-IIIT-Bh</h2> <br>
+       The Computer Science and Engineering branch of IIIT-Bh is full of zealous virtuosos aimed at bringing about a digital revolution in the nonce world. CSE is full of skilled web developers, android developers, blockchain experts, AI and ML experts working together to revolutionize the world. So, together the CSE will rock the tech
         </div>
-    </section>
-    <section class="section" id="services">
-        <div class="paras">
-            <p class="sectionTag text-big">Lets Grow Together</p>
-            <p class="sectionSubTag text-small">Education began in prehistory, as adults trained the young in the knowledge and skills deemed necessary in their society. In pre-literate societies, this was achieved orally and through imitation. Story-telling passed knowledge, values, and
-                skills from one generation to the next. As cultures began to extend their knowledge beyond skills that could be readily learned through imitation, formal education developed. Schools existed in Egypt at the time of the Middle Kingdom.
-            </p>
+    </div>
+    <div class="homeSection">
+        <div class="notice">
+        <h2 style="color: darkslategray; text-decoration: underline">Faculty</h2> <br>
+       The Institute owes its excellence to its faculty who are responsible for quality in research, education and culture of innovation and free thinking. CSE owes profound debt to its mentors.
+        </div>
+        <div class="list">
+        <h2 style="color: darkslategray;  text-decoration: underline">Prospective Students</h2> <br>
+      The Institute and the CSE Branch provides an extraordinary environment to create technology leaders of tomorrow and help them face the challenges of tomorrow.
+        </div>
+    </div>
+    <div class="homeSection">
+        <div class="notice">
+        <h2 style="color: darkslategray; text-decoration: underline">Events</h2> <br>
+      CSE Branch of IIIT-Bh completely relies on pragmatism. We believe in practicals more than the theory. So, we conduct events like hackathons based on web development, android development on regular basis. These events have trained maximum people to become good developers and experts of their respective fields.
+        </div>
+        <div class="list">
+        <h2 style="color: darkslategray;  text-decoration: underline">Jobs Opportunities</h2> <br>
+       The Institute constantly looks for talented Faculty to bolster its teaching and research activities. The academic environment empowers and encourages its faculty members to innovate and initiate. The Institute provides competitive compensation to attract and retain Faculty talent.
+        </div>
+    </div>
 
-            <p class="sectionSubTag text-small">
-                Matteo Ricci (left) and Xu Guangqi (right) in the Chinese edition of Euclid's Elements published in 1607 Plato founded the Academy in Athens, the first institution of higher learning in Europe.
-            </p>
-        </div>
-        <div class="thumbnail">
-            <img src="https://source.unsplash.com/900x900/?javascript,html" alt="laptop image" class="imgFluid">
-        </div>
-    </section>
+    <!-- Recent Notices Section Ends -->
 
 
     <footer class="background">
@@ -188,41 +210,41 @@
     <script src="/static/resp.js"></script>
     {% comment %} Login Modal JS {% endcomment %}
     <script>
-// Get the modal
-var modal = document.getElementById("myModal");
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
-{% comment %} Alert Javascript {% endcomment %}
-<script>
-var spanclose = document.getElementsByClassName("closealert")[0];
-// When the user clicks on <span> (x), close the modal
-spanclose.onclick = function() {
-  message.style.display = "none";
-}
-</script>
+    {% comment %} Alert Javascript {% endcomment %}
+    <script>
+        var spanclose = document.getElementsByClassName("closealert")[0];
+        // When the user clicks on <span> (x), close the modal
+        spanclose.onclick = function() {
+            message.style.display = "none";
+        }
+    </script>
 
 </body>
 

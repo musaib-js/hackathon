@@ -12,6 +12,8 @@ urlpatterns = [
     path('todo/', views.todo, name = "todo"),
     path('update/', views.update, name = "update"),
     path('polls/', views.polls, name = "polls"),
+    path('noticeupdate/<str:slug>/', views.noticeupdate, name = "noticeupdate"),
+    path('delete/<str:slug>/', views.delete, name = "delete"),
     path('<str:slug>/', views.notice, name = "notice"),
     
 ]

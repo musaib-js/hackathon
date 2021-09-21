@@ -3,7 +3,7 @@
         flex-direction: column;
     }
     .navbar {
-        height: 447px;
+        height: 550px;
         flex-direction: column;
         transition: all 0.7s ease-out;
     }
@@ -29,6 +29,10 @@
     .section {
         flex-direction: column-reverse;
     }
+    .homeSection {
+        flex-direction: column;
+        transition: all 0.7s ease-out;
+    }
     .text-small {
         text-align: center;
     }
@@ -40,5 +44,20 @@
     }
     .paras {
         padding: 0px;
+    }
+    .notice {
+        width: 100%;
+    }
+    .list {
+        width: 100%;
+    }
+    .select-input {
+        margin: 14px 0;
+        padding: 5px 13px;
+        width: 100%;
+        font-size: 15px;
+        border: 2px solid grey;
+        border-radius: 6px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 }
